@@ -1,0 +1,5 @@
+docker:
+  - environment:
+      TERM: dumb
+    image: cibuilds/base:latest
+resource_class: small
