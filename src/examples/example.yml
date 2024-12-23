@@ -7,8 +7,11 @@ usage:
     <orb-name>: <namespace>/<orb-name>@0.0.1
   jobs:
     build:
+      docker:
+        - image: <docker image>
       steps:
-        - msteams/status:
+        - run: exit 0
+        - <orb-name>/status:
             fail_only: true
             only_for_branches: only_for_branches
             webhook: webhook
