@@ -40,9 +40,9 @@ steps:
   - run:
       name: MS Teams - Sending Status Alert
       environment:
-        webhook: <<parameters.webhook>>
-        fail_only: <<parameters.fail_only>>
-        success_message: <<parameters.success_message>>
-        failure_message: <<parameters.failure_message>>
+        WEBHOOK: <<parameters.webhook>>
+        FAIL_ONLY: <<parameters.fail_only>>
+        SUCCESS_MESSAGE: <<parameters.success_message>>
+        FAILURE_MESSAGE: <<parameters.failure_message>>
       when: always
       command: <<include(scripts/notify.sh)>>
