@@ -1,3 +1,4 @@
+description: Default executor
 docker:
   - environment:
       TERM: dumb

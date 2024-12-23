@@ -3,3 +3,4 @@ description: >
   Easily integrate custom MS Teams notifications into your CircleCI projects. Create custom alert messages for any job or receive status updates.
 display:
   home_url: "https://www.github.com/simpleviewinc/circleci-ms-teams"
+  source_url: "https://www.github.com/simpleviewinc/circleci-ms-teams"
