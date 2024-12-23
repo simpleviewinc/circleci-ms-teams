@@ -2,6 +2,9 @@ description: |
   Send a status alert at the end of a job based on success or failure.
   This must be the last step in a job.
 usage:
+  version: 2.1
+  orbs:
+    msteams: simpleviewinc/circleci-ms-teams@0.0.1
   jobs:
     build:
       docker:
@@ -12,6 +15,3 @@ usage:
             fail_only: true
             only_for_branches: only_for_branches
             webhook: webhook
-  orbs:
-    msteams: simpleviewinc/circleci-ms-teams@x.y.z
-  version: 2.1
