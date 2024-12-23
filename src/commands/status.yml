@@ -6,11 +6,6 @@ parameters:
     description: |
       If `true`, notifications successful jobs will not be sent
     type: boolean
-  only_for_branches:
-    default: ""
-    description: |
-      If set, a comma-separated list of branches for which to send notifications. No spaces.
-    type: string
   failure_message:
     default: ':red_circle: A $CIRCLE_JOB job has failed!'
     description: Enter custom message.
@@ -45,7 +40,6 @@ steps:
   - run:
       name: MS Teams - Sending Status Alert
       environment:
-        only_for_branches: <<parameters.only_for_branches>>
         webhook: <<parameters.webhook>>
         fail_only: <<parameters.fail_only>>
         success_message: <<parameters.success_message>>
