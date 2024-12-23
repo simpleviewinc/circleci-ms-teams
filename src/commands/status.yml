@@ -1,5 +1,6 @@
 description: |
-  Send a status alert at the end of a job based on success or failure. Must be the last step in a job.
+  Send a status alert at the end of a job based on success or failure.
+  Must be the last step in a job.
 parameters:
   fail_only:
     default: false
@@ -17,7 +18,8 @@ parameters:
   webhook:
     default: ${MSTEAMS_WEBHOOK}
     description: |
-      Enter either your Webhook value or use the CircleCI UI to add your token under the 'MSTEAMS_WEBHOOK' env var
+      Enter either your Webhook value or use the CircleCI UI to add your
+      token under the 'MSTEAMS_WEBHOOK' env var
     type: string
 steps:
   - run:
