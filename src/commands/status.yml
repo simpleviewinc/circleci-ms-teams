@@ -31,13 +31,6 @@ steps:
       name: MS Teams - Setting Success Condition
       when: on_success
   - run:
-      command: |
-        if [ ! -x /bin/bash ]; then
-          echo Bash not installed.
-          exit 1
-        fi
-      name: Provide error if non-bash shell
-  - run:
       name: MS Teams - Sending Status Alert
       environment:
         WEBHOOK: <<parameters.webhook>>
