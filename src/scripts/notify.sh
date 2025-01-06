@@ -11,7 +11,7 @@ fi
 #If successful
 if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
     #Skip if fail_only
-    if [ "${FAIL_ONLY}" = true ]; then
+    if [ "${FAIL_ONLY}" = "1" ]; then
         echo "The job completed successfully"
         echo '"fail_only" is set to "true". No MS Teams notification sent.'
     else
@@ -107,8 +107,8 @@ else
                     \"value\": \"$CIRCLE_BRANCH\" \
                     }, \
                     { \
-                    \"title\": \"Job Number\", \
-                    \"value\": \"$CIRCLE_BUILD_NUM\" \
+                    \"title\": \"Pull Request Username\", \
+                    \"value\": \"$CIRCLE_PR_USERNAME\" \
                     } \
                 ] \
                 } \
@@ -118,6 +118,11 @@ else
                 \"type\": \"Action.OpenUrl\", \
                 \"title\": \"View Job\", \
                 \"url\": \"$CIRCLE_BUILD_URL\" \
+                }, \
+                { \
+                \"type\": \"Action.OpenUrl\", \
+                \"title\": \"View PR\", \
+                \"url\": \"$CIRCLE_PULL_REQUEST\" \
                 } \
             ] \
             } \

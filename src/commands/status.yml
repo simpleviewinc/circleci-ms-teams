@@ -8,11 +8,11 @@ parameters:
       If `true`, notifications successful jobs will not be sent
     type: boolean
   failure_message:
-    default: ':red_circle: A $CIRCLE_JOB job has failed!'
+    default: '🔴 A job has failed!'
     description: Enter custom message.
     type: string
   success_message:
-    default: 'U+1F389 A $CIRCLE_JOB job has succeeded!'
+    default: '🎉 A job has succeeded!'
     description: Enter custom message.
     type: string
   webhook:
