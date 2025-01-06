@@ -5,7 +5,7 @@ parameters:
   fail_only:
     default: false
     description: |
-      If `true`, notifications successful jobs will not be sent
+      If `true`, only send notifications on failure
     type: boolean
   failure_message:
     default: '🔴 A job has failed!'
