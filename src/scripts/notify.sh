@@ -1,5 +1,4 @@
 #!/bin/bash
-env
 
 # Provide error if no webhook is set and error. Otherwise continue
 if [ -z "${WEBHOOK}" ]; then
