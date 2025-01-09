@@ -47,6 +47,10 @@ if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
                             \"value\": \"$CIRCLE_BRANCH\" \
                         }, \
                         { \
+                            \"title\": \"Pipeline Username\", \
+                            \"value\": \"$CIRCLE_USERNAME\" \
+                        }, \
+                        { \
                             \"title\": \"Pull Request Username\", \
                             \"value\": \"$CIRCLE_PR_USERNAME\" \
                         } \

@@ -4,13 +4,13 @@ description: |
 usage:
   version: 2.1
   orbs:
-    teams: simpleviewinc/circleci-ms-teams@0.0.1
+    circleci-ms-teams: simpleviewinc/circleci-ms-teams@0.0.1
   jobs:
     build:
       docker:
         - image: <docker image>
       steps:
         - run: exit 0
-        - teams/status:
+        - circleci-ms-teams/status:
             fail_only: true
             webhook: WEBHOOK_URL
