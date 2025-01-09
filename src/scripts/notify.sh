@@ -102,16 +102,20 @@ else
                 \"type\": \"FactSet\", \
                 \"facts\": [ \
                     { \
-                    \"title\": \"Project\", \
-                    \"value\": \"$CIRCLE_PROJECT_REPONAME\" \
+                        \"title\": \"Project\", \
+                        \"value\": \"$CIRCLE_PROJECT_REPONAME\" \
                     }, \
                     { \
-                    \"title\": \"Branch\", \
-                    \"value\": \"$CIRCLE_BRANCH\" \
+                        \"title\": \"Branch\", \
+                        \"value\": \"$CIRCLE_BRANCH\" \
                     }, \
                     { \
-                    \"title\": \"Pull Request Username\", \
-                    \"value\": \"$CIRCLE_PR_USERNAME\" \
+                        \"title\": \"Pipeline Username\", \
+                        \"value\": \"$CIRCLE_USERNAME\" \
+                    }, \
+                    { \
+                        \"title\": \"Pull Request Username\", \
+                        \"value\": \"$CIRCLE_PR_USERNAME\" \
                     } \
                 ] \
                 } \
