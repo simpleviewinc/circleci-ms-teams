@@ -4,7 +4,7 @@ description: |
 usage:
   version: 2.1
   orbs:
-    circleci-ms-teams: simpleviewinc/circleci-ms-teams@0.0.1
+    circleci-ms-teams: simpleviewinc/circleci-ms-teams@1.0.0
   jobs:
     build:
       docker:

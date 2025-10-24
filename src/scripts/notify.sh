@@ -7,6 +7,27 @@ if [ -z "${WEBHOOK}" ]; then
     exit 1
 fi
 
+BRANCH_TITLE="Branch"
+if [ -n "${CIRCLE_TAG}" ]; then
+    BRANCH_TITLE="Tag"
+fi
+
+if [ -n "${TEST_RESULTS_URL}" ]; then
+    TEST_RESULTS_LINKS="${TEST_RESULTS_URL//,/\\n}"
+    TEST_RESULTS_FACTS=",{ \
+        \"title\": \"Test Results Link(s)\", \
+        \"value\": \"${TEST_RESULTS_LINKS}\" \
+    }"
+fi
+
+if [ -n "${COVERAGE_URL}" ]; then
+    COVERAGE_LINKS="${COVERAGE_URL//,/\\n}"
+    COVERAGE_FACTS=",{ \
+        \"title\": \"Coverage Link(s)\", \
+        \"value\": \"${COVERAGE_LINKS}\" \
+    }"
+fi
+
 #If successful
 if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
     #Skip if fail_only
@@ -26,6 +47,9 @@ if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
                     \"\$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\", \
                     \"type\": \"AdaptiveCard\", \
                     \"version\": \"1.2\", \
+                    \"msteams\": { \
+                        \"width\": \"Full\" \
+                    }, \
                     \"body\": [
                     { \
                         \"type\": \"TextBlock\", \
@@ -43,8 +67,8 @@ if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
                             \"value\": \"$CIRCLE_PROJECT_REPONAME\" \
                         }, \
                         { \
-                            \"title\": \"Branch\", \
-                            \"value\": \"$CIRCLE_BRANCH\" \
+                            \"title\": \"${BRANCH_TITLE}\", \
+                            \"value\": \"${CIRCLE_TAG:-${CIRCLE_BRANCH}}\" \
                         }, \
                         { \
                             \"title\": \"Pipeline Username\", \
@@ -54,6 +78,8 @@ if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
                             \"title\": \"Pull Request Username\", \
                             \"value\": \"$CIRCLE_PR_USERNAME\" \
                         } \
+                        ${TEST_RESULTS_FACTS} \
+                        ${COVERAGE_FACTS} \
                         ] \
                     } \
                     ], \
@@ -106,8 +132,8 @@ else
                         \"value\": \"$CIRCLE_PROJECT_REPONAME\" \
                     }, \
                     { \
-                        \"title\": \"Branch\", \
-                        \"value\": \"$CIRCLE_BRANCH\" \
+                        \"title\": \"${BRANCH_TITLE}\", \
+                        \"value\": \"${CIRCLE_TAG:-${CIRCLE_BRANCH}}\" \
                     }, \
                     { \
                         \"title\": \"Pipeline Username\", \
@@ -117,6 +143,8 @@ else
                         \"title\": \"Pull Request Username\", \
                         \"value\": \"$CIRCLE_PR_USERNAME\" \
                     } \
+                    ${TEST_RESULTS_FACTS} \
+                    ${COVERAGE_FACTS} \
                 ] \
                 } \
             ], \

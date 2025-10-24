@@ -1,6 +1,17 @@
+---
 description: Default executor
+
 docker:
   - environment:
       TERM: dumb
-    image: cibuilds/base:latest
+    image: cimg/base:<< parameters.image_tag >>
 resource_class: small
+
+parameters:
+  image_tag:
+    description: >
+      Tag for the `cimg/base` Docker image. See
+      https://circleci.com/developer/images/image/cimg/base#image-tags
+      for further details
+    type: string
+    default: current
