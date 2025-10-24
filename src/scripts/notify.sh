@@ -115,6 +115,9 @@ else
             \"\$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\", \
             \"type\": \"AdaptiveCard\", \
             \"version\": \"1.2\", \
+            \"msteams\": { \
+                \"width\": \"Full\" \
+            }, \
             \"body\": [
                 { \
                 \"type\": \"TextBlock\", \
