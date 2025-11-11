@@ -28,6 +28,14 @@ if [ -n "${COVERAGE_URL}" ]; then
     }"
 fi
 
+if [ -n "${TRUFFLEHOG_RESULTS}" ]; then
+    TRUFFLEHOG_LINKS="${TRUFFLEHOG_RESULTS//,/\\n}"
+    TRUFFLEHOG_FACTS=",{ \
+        \"title\": \"Trufflehog Results\", \
+        \"value\": \"${TRUFFLEHOG_LINKS}\" \
+    }"
+fi
+
 #If successful
 if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
     #Skip if fail_only
@@ -80,6 +88,7 @@ if [ "$MSTEAMS_BUILD_STATUS" = "success" ]; then
                         } \
                         ${TEST_RESULTS_FACTS} \
                         ${COVERAGE_FACTS} \
+                        ${TRUFFLEHOG_FACTS} \
                         ] \
                     } \
                     ], \
