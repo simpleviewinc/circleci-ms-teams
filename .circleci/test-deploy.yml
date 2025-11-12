@@ -19,9 +19,33 @@ release-filters: &release-filters
   tags:
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
+jobs:
+  command-notify:
+    parameters:
+      only_on_fail:
+        type: boolean
+        default: false
+    docker:
+      - image: cimg/base:edge
+    steps:
+      - checkout
+      # Run your orb's commands to validate them.
+      - run:
+          when: always
+          name: Export WEBHOOK variable
+          command: |
+            echo 'export WEBHOOK="${PARAM_WEBHOOK:-${TEAMS_WEBHOOK:-${TEAMS_WEBHOOK_ORG}}}"' >> $BASH_ENV
+      - circleci-ms-teams/status:
+          fail_only: << parameters.only_on_fail >>
+
 workflows:
   test-deploy:
     jobs:
+      - command-notify:
+          name: command-notify/test
+          only_on_fail: true
+          context: default
+          filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           filters: *release-filters
@@ -32,5 +56,12 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-          context: <publishing-context>
+          context: orb-publishing
           filters: *release-filters
+      - command-notify:
+          name: command-notify/complete
+          context: default
+          filters: *filters
+          requires:
+            - command-notify/test
+            - orb-tools/publish

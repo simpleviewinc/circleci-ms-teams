@@ -157,6 +157,7 @@ else
                     } \
                     ${TEST_RESULTS_FACTS} \
                     ${COVERAGE_FACTS} \
+                    ${TRUFFLEHOG_FACTS} \
                 ] \
                 } \
             ], \
